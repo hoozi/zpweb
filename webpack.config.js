@@ -9,8 +9,14 @@ let htmlPlugins = [];
 
 let entries = {};
 
-config.pages.forEach(page => {
+const { pages } = config;
+
+for(let key in pages) {
+    const page = key;
+    const { meta } = pages[key]; 
+    const bootstrap = meta.bootstrapStyle ? ['bootstrap/dist/css/bootstrap'] : [];
     const htmlPlugin = new HTMLWebpackPlugin({
+        meta,
         filename: `${page}.html`,
         template: path.resolve(__dirname, `./src/pages/${page}`),
         chunks: [page, 'commons'],
@@ -22,8 +28,18 @@ config.pages.forEach(page => {
         }
     });
     htmlPlugins.push(htmlPlugin);
-    entries[page] = [path.resolve(__dirname, `./src/logic/${page}`), path.resolve(__dirname, `./src/styles/${page}`)];
- })
+    entries[page] = [
+        // logic scripts
+        path.resolve(__dirname, `./src/logic/${page}`),
+        
+        // page style
+        path.resolve(__dirname, `./src/styles/${page}`),
+
+        // bootstrap
+        ...bootstrap
+
+    ];     
+}
 module.exports = {
     entry: entries,
     output: {
@@ -61,7 +77,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|gif)$/,
+                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/,
                 use: {
                     loader: 'file-loader'
                 }
@@ -77,6 +93,19 @@ module.exports = {
                             minimize: true
                         }
                     }, 'sass-loader']
+                })
+            },
+            {
+                test: /\.css$/,
+                //include: path.resolve(__dirname, "./src"),
+                use: ExtractTextWebpackPlugin.extract({
+                    fallback: "style-loader",
+                    use: {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    }
                 })
             }
         ]
@@ -126,6 +155,6 @@ module.exports = {
             sourceMap: true
         }),
         ...htmlPlugins,
-        new ExtractTextWebpackPlugin("[name].style.[hash].css"),
+        new ExtractTextWebpackPlugin("[name].[hash].css"),
     ]
 }

@@ -1,5 +1,14 @@
 module.exports = {
-  pages: [
-    'index', 'about'
-  ]
+  pages: {
+    'index': {
+      meta: {
+        bootstrapStyle: true
+      }
+    },
+    'about': {
+      meta: {
+        
+      }
+    }
+  }
 }

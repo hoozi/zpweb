@@ -41,6 +41,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.8.0",
     "bootstrap-daterangepicker": "^3.0.3",
+    "bootstrap-hover-dropdown": "^2.2.1",
     "bootstrap-select": "^1.12.4",
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",

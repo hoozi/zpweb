@@ -5,15 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%=pageTitle%></title>
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_886193_oedrc8atile.css">
 </head>
 <body>
-<div class="wrapper">
+<div class="layout">
   <div class="layout-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">logo</div>
-        <div class="col-md-8">nav</div>
-        <div class="right-content"></div>
+    <div class="navbar main-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand"><img src="assets/img/logo.png" alt="logo"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <%_.each(menuData, (m) => {%>
+              <%if(m.children && m.children.length >0){%>
+              <li class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle" data-hover="dropdown" data-delay="200" role="button" aria-haspopup="true" aria-expanded="false"><%=m.name%></a>
+                  <ul class="dropdown-menu">
+                    <%_.each(m.children, child => {%>
+                    <li><a href="<%=child.href%>"><%=child.name%></a></li>
+                    <%})%>
+                  </ul>
+              </li>
+              <%}else{%>
+                <li>
+                  <a href="<%=m.href%>"><%=m.name%></a>
+                </li>
+              <%}%>
+            <%})%>
+          </ul>
+        </div> 
       </div>
     </div>
   </div>
