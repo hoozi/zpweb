@@ -1,14 +1,34 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const config = require('./config');
 
+let htmlPlugins = [];
+
+let entries = {};
+
+config.pages.forEach(page => {
+    const htmlPlugin = new HTMLWebpackPlugin({
+        filename: `${page}.html`,
+        template: path.resolve(__dirname, `./src/pages/${page}`),
+        chunks: [page, 'commons'],
+        minify: {
+            "removeAttributeQuotes": true,
+            "removeComments": true,
+            "removeEmptyAttributes": true,
+            "collapseWhitespace" :true
+        }
+    });
+    htmlPlugins.push(htmlPlugin);
+    entries[page] = [path.resolve(__dirname, `./src/logic/${page}`), path.resolve(__dirname, `./src/styles/${page}`)];
+ })
 module.exports = {
-    entry: ['babel-polyfill', './src'],
+    entry: entries,
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.[hash].js'
+        filename: '[name].[hash].js'
     },
     module: {
         unknownContextCritical : false,
@@ -47,16 +67,16 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 //include: path.resolve(__dirname, "./src"),
                 use: ExtractTextWebpackPlugin.extract({
                     fallback: "style-loader",
-                    use: {
+                    use: [{
                         loader: 'css-loader',
                         options: {
                             minimize: true
                         }
-                    }
+                    }, 'sass-loader']
                 })
             }
         ]
@@ -66,7 +86,8 @@ module.exports = {
             'jquery': path.resolve(__dirname, './node_modules/jquery'),
             'backbone': path.resolve(__dirname, './node_modules/backbone'),
             'bootstrap': path.resolve(__dirname, './node_modules/bootstrap'),
-            'underscore': path.resolve(__dirname, './node_modules/underscore')
+            'underscore': path.resolve(__dirname, './node_modules/underscore'),
+            '@': path.resolve(__dirname, './src')
         },
         modules: [
             "node_modules",
@@ -76,12 +97,14 @@ module.exports = {
             '.js',
             '.json',
             '.ejs',
-            '.css'
+            '.css',
+            '.scss'
         ],
     },
     optimization: {
         splitChunks: {
-            minChunks: 3
+            minChunks: 3,
+            name: 'commons'
         }
     },
     devServer: {
@@ -102,11 +125,7 @@ module.exports = {
         new UglifyJSPlugin({
             sourceMap: true
         }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            minify: { collapseWhitespace :true},
-            template: path.resolve(__dirname, './src/index.html')
-        }),
-        new ExtractTextWebpackPlugin("style.[hash].css"),
+        ...htmlPlugins,
+        new ExtractTextWebpackPlugin("[name].style.[hash].css"),
     ]
 }
