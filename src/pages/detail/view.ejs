@@ -1,0 +1,37 @@
+<div class="layout-page-banner detail-banner">
+  <div class="layout-page-banner-text">
+    <h1>嘉港新闻</h1>
+    <p>NEWS</p>
+  </div>
+</div>
+
+<div class="detail-body page-body">
+  <div class="detail-container container">
+    <div id="detail-content-area">
+        <div style="line-height: 200px; text-align: center; color: #1890ff">加载中....</div>
+    </div>
+    <div class="detial-footer clearfix">
+        <!-- Baidu Button BEGIN -->
+      <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+        <span class="bds_more">分享到 ：</span>
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_renren"></a>
+        <a class="bds_t163"></a>
+        <a class="shareCount"></a>
+      </div>
+        <!-- Baidu Button END -->
+    
+    </div>
+</div>
+<script type="text/template" id="news-detail--tpl">
+  <h1 class="detail-title">{{title}}</h1>
+  <div class="detail-extra">
+    <span>发布时间：{{createDate ? moment(createDate).format('YYYY-MM-DD hh:mm:ss') : '-'}}</span>
+    <span>来源：{{source? source : '-'}}</span>
+  </div>
+  <div class="detail-content">
+    {{contents}}
+  </div>
+</script>

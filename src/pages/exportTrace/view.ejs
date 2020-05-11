@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="http://www.yibutong.com.cn/css/style.css">
+<div class="page-body old-body">
+  <div class="container">
+    <div class="layout">
+			<div class="ship_search">
+				<div class="ship_search_box">
+					<div class="s_s_b_title">出口跟踪<span>Export Trace</span></div>
+					<form id="form1" action="">						
+						<dl class="clearfix">
+							<dt class="bor_r bf6">
+								<label>
+									<input type="radio" name="type" id="byctnno" value="ctn" checked="true">按箱号查询
+								</label>
+							</dt>
+							<dd>
+								<input type="text" name="ctnno" id="ctnno" onkeyup="Convert(this)">
+								<span>请注意一个箱号可能对应多个提单号</span>
+							</dd>
+						</dl>
+						<dl class="clearfix">
+							<dt class="bor_r bf6">
+								<label>
+									<input type="radio" name="type" id="byblno" value="bl">按提单号查询
+								</label>
+							</dt>
+							<dd>
+								<input type="text" name="blno" id="blno">
+								<span>请注意一个提单号可能存在多个箱子</span>
+							</dd>
+						</dl>
+						<dl class="clearfix">
+							<dt class="checkbox"></dt>
+							<dd class="s_s_sub">
+								<input id="ctnbutton" type="button" value="查 询">
+								<input id="emptybutton" type="button" value="清 空" class="empty">
+							</dd>
+						</dl>
+					</form>
+				</div>
+			</div>
+			
+			<div class="dx_wrap bor5 clearfix" id="querycontent" style="display:none">
+				
+				<div class="dx_info fl">
+					<div class="dx_info_hd" id="infotitle">
+						<div>
+							<i></i>单箱信息
+							<!--<select name="" id="">
+								<option value="1">AAAAABCD1234</option>
+								<option value="1">AAAAABCD1235</option>
+							</select>-->
+						</div>
+					</div>
+					<div class="dx_info_bd">
+						<table cellpadding="0" cellspacing="0" width="100%" id="ctninfo">
+							<!-- 展现单箱详细信息 -->
+						</table>
+					</div>
+				</div>
+				
+				<div class="log_nodes fl">
+					<div class="log_nodes_hd"><i></i>物流节点</div>
+					<div class="log_nodes_bd">
+						<!--current是已有的节点,last_log是最后一个节点-->
+						<ul class="clearfix" id="traceinfo">
+							<!-- 展现单箱跟踪信息 -->
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="prompt">
+				<h2>特别提示</h2>
+				<ul>
+					<li>不支持模糊查询，请完整输入箱号或提单号进行查询</li>
+					<li>更多信息请注意页面底部的滚动条</li>
+				</ul>
+			</div>
+			
+		</div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="http://www.yibutong.com.cn/css/style.css">
+<link rel="stylesheet" href="http://www.yibutong.com.cn/css/y-map.css">
+<div class="page-body old-body">
+  <div class="container">
+    <div class="layout">
+			<div class="dx_wrap bor5 clearfix clp_lr_wrap ship_search">
+				<div class="hs_info_hd clearfix clp_hd">
+					<h2 class="td_title fl clp_title">箱源查询<span>Yard Empty Storage</span></h2>
+				</div>
+				<div class="hs_info_bd clp_bd pubish_table">					
+					<div class="map-search alone clearfix">
+						<dl class="fl">
+							<dt class="bor_r bf6">箱主</dt>
+							<dd>
+								<input type="text" name="" id="ctnOwner">
+							</dd>
+						</dl>
+						<dl class="fl">
+							<dt class="bor_l bor_r bf6">堆场</dt>
+							<dd>
+								<input type="text" name="" id="yardCode" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+							</dd>
+						</dl>
+						<dl class="fl">
+							<dt class="bor_l bor_r bf6" style="width: 56px">箱型尺寸</dt>
+							<dd>
+								<input type="text" name="" id="ctnSizeType" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+							</dd>
+						</dl>
+						<dl class="bor_l fl a-btn">
+							<dd class="s_s_sub">
+								<input type="button" value="查 询" id="ctn-search">
+							</dd>
+						</dl>
+					</div>
+					
+					<div class="map-wrap">
+						<div class="map-left" id="map-left">
+							<div class="line-x"></div>
+							<div class="line-y"></div>
+							<div class="left-btn">
+								<div class="toggle">
+									<span class="btn"></span>
+								</div>
+							</div>
+							<div class="map-info" id="map-info">查询中...</div>
+							<div class="map-area" id="map-area"></div>
+						</div>
+						<div class="map-right" id="map-right">
+							<div class="ctn-hd">
+								<h2 id="ctn-info" class="fl">努力获取堆场中...</h2>
+							</div>
+							<div class="map-scroll">
+								<div class="d-stats">
+										<span class="loading-icon"></span>
+								</div>
+								<ul id="dump-list">
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+			
+		</div>
+  </div>
+</div>
+
+<script language="javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2245634c574cf17df021a2d11e8deb1e"></script>
+
+
+
+

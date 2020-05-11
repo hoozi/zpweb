@@ -1,6 +1,32 @@
 $perfix: layout;
 $bannerPerfix: #{$perfix}-page-banner;
 
+.top-bar {
+  width: 100%;
+  background-color: #096dd9;
+  height: 36px;
+  span, .login-area {
+    color: #fff;
+    line-height: 36px;
+  }
+  .login-area a {
+    color: #fff;
+    display: inline-block;
+    line-height: 1;
+    padding:4px 8px;
+    //background-color: #096dd9;
+    //margin-right: 24px;
+    border-radius: 3px;
+    &:hover {
+      background-color: $primary-color;
+    }
+    i {
+      font-size: 16px;
+      margin-right: 0;
+    }
+  }
+}
+
 .#{$perfix} {
   #{&}-header,
   #{&}-footer,
@@ -37,14 +63,26 @@ $bannerPerfix: #{$perfix}-page-banner;
       &.index-banner {
         background-image: url('../assets/bg.jpg');
       }
+      &.detail-banner {
+        height:300px;
+        background-image: url('../assets/nb.jpg');
+      }
     }
   }
-  .#{$perfix}-header {
+  #{&}-header {
     height: 64px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  #{&}-footer {
+    background-color: #373d41;
+    padding: 24px 0;
+    .copyright {
+      color: #73777a;
+      font-size: 14px;
+    }
   }
 }
 
 .section {
   width: 100%;
-  padding: 76px 0;
 }

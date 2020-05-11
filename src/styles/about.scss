@@ -1,5 +1,4 @@
-div {
-  h1 {
-    color: green;
-  }
-}
+@import './var.scss';
+@import './reset.scss';
+@import './base.scss';
+@import './layout.scss';

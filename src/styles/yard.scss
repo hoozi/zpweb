@@ -1,0 +1,23 @@
+@import './var.scss';
+@import './reset.scss';
+@import './base.scss';
+@import './layout.scss';
+@import './iconfont.scss';
+@import './services.scss';
+
+.old-body {
+  min-height: 800px;
+}
+.ship_search dl dd,.ship_search  dl dt {
+  box-sizing: content-box;
+}
+.map-right .ctn-hd {
+  width: 228px;
+  box-sizing: content-box;
+}
+.map-right .ctn-hd h2 {
+  line-height: 32px;
+}
+.map-right ul li {
+  box-sizing: content-box;
+}

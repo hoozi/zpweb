@@ -1,0 +1,11 @@
+@import './var.scss';
+@import './reset.scss';
+@import './base.scss';
+@import './layout.scss';
+@import './iconfont.scss';
+@import './services.scss';
+
+
+.ship_search dl dd {
+  box-sizing: content-box;
+}

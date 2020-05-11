@@ -4,6 +4,12 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const config = require('./config');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackZipPlugin = require('webpack-zip-plugin');
+const moment = require('moment');
+function isDev() {
+    return process.env.NODE_ENV === 'development';
+}
 
 let htmlPlugins = [];
 
@@ -32,14 +38,37 @@ for(let key in pages) {
         // logic scripts
         path.resolve(__dirname, `./src/logic/${page}`),
         
-        // page style
-        path.resolve(__dirname, `./src/styles/${page}`),
-
         // bootstrap
-        ...bootstrap
+        ...bootstrap,
+
+        // page style
+        path.resolve(__dirname, `./src/styles/${page}`)
 
     ];     
 }
+
+const basePlugins = [
+    new webpack.ProvidePlugin({
+        'jQuery': 'jquery',
+        '_': 'underscore',
+        '$': 'jquery'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new UglifyJSPlugin({
+        sourceMap: true
+    }),
+    ...htmlPlugins,
+    new ExtractTextWebpackPlugin("[name].[hash].css"),
+    new CleanWebpackPlugin(['dist','*.zip'])
+];
+const plugins = isDev() ? basePlugins : [...basePlugins, new WebpackZipPlugin({
+    initialFile: './dist',
+    endPath: './',
+    zipName: `${moment().format('YYYYMMDDHHmmss')}.zip`
+})]
+
+
+
 module.exports = {
     entry: entries,
     output: {
@@ -63,7 +92,8 @@ module.exports = {
                             'transform-regenerator',
                             'transform-decorators-legacy', 
                             'dynamic-import-webpack',
-                            'transform-object-rest-spread'
+                            'transform-object-rest-spread',
+                            'transform-runtime'
                         ]
                     }
                 }
@@ -91,6 +121,14 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             minimize: true
+                        }
+                    }, { 
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            config: {
+                                path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
+                            }
                         }
                     }, 'sass-loader']
                 })
@@ -138,23 +176,26 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/mall-portal': {
-              target: "http://www.yibutong.com.cn", // 将 URL 中带有 /api 的请求代理到本地的 3000 端口的服务上
-              //pathRewrite: { '': '' }, // 把 URL 中 path 部分的 `api` 移除掉
+          '/api': {
+              'target': 'http://192.168.1.103:8080',
+              pathRewrite: {
+                '^/api' : ''
+              }
+          },
+          '/ybt': {
+            'target': 'http://www.yibutong.com.cn',
+            pathRewrite: {
+                '^/ybt': ''
             }
+          },
+          '/jgt': {
+            'target': 'http://192.168.1.110:8080',
+            pathRewrite: {
+                '^/jgt': '/jgteport'
+            }
+          }
         },
         open : true
     },
-    plugins: [
-        new webpack.ProvidePlugin({
-            'jQuery': 'jquery',
-            '_': 'underscore',
-            '$': 'jquery'
-        }),
-        new UglifyJSPlugin({
-            sourceMap: true
-        }),
-        ...htmlPlugins,
-        new ExtractTextWebpackPlugin("[name].[hash].css"),
-    ]
+    plugins
 }

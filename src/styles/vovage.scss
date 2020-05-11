@@ -1,0 +1,32 @@
+@import './var.scss';
+@import './reset.scss';
+@import './base.scss';
+@import './layout.scss';
+@import './iconfont.scss';
+@import './services.scss';
+
+.branch-modal {
+  .modal-dialog {
+    
+  }
+}
+.branch-item {
+  .branch-title {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 24px;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .col-md-4 {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 7px;
+    color: rgba(0, 0, 0, 0.55);
+    span {
+      display: inline-block;
+      margin-right: 8px;
+      color: rgba(0,0,0,.85);
+    }
+  }
+}

@@ -4,59 +4,121 @@
     <p>Quality service, The pursuit of excellence</p>
   </div>
 </div>
+<div class="index-page">
+  <div class="section">
+    <div class="alert alert-warning mb0 nbrr notice">
+      <i class="iconfont icon-sound-fill"></i> 
+      <ul id="notice-content" class="notice-content news-list">
+        <li>通知获取中...</li>
+      </ul>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+  </div>
 
-<div class="section section-service">
-  <div class="container">
-    <div class="section-header mb32">
-      <h2 class="section-title text-center">在线服务</h2>
-      <p class="section-title-sub text-center">SERVICE</p>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="service-grid">
-          <div class="service-grid-header">
-            <i class="iconfont icon-search"></i>
-            <p>信息查询</p>
-          </div>
-          <div class="service-grid-body">
-            <ul class="service-list">
-              <li><a href="###">干线船期查询</a></li>
-              <li class="split">|</li>
-              <li><a href="###">干线船期查询</a></li>
-              <li class="split">|</li>
-              <li><a href="###">干线船期查询</a></li>
-            </ul>
+  <div class="section pt24 pb24">
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-md-4 hfull">
+          <div class="link-list hfull">
+            <a href="vovage.html" class="link1 pl24 p8">
+              <!-- <i class="iconfont icon-lunchuan"></i> -->
+              <h2>船期查询</h2>
+              <h5>Vessel Dynamic Plan</h5>
+            </a>
+            <a href="exportTrace.html" class="link3 pl24 p8">
+              <!-- <i class="iconfont icon-jizhuangxiangxiangxing"></i> -->
+              <h2>出口跟踪</h2>
+              <h5>Export Trace</h5>
+            </a>
+            <a href="importTrace.html" class="link4 pl24 p8"><!-- 
+              <i class="iconfont icon-jizhuangxiangbaobiao"></i>   -->
+              <h2>进口跟踪</h2>
+              <h5>Import Trace</h5>
+            </a>
+            <a href="yard.html" class="link2 pl24 p8">
+              <!-- <i class="iconfont icon-search"></i> -->
+              <h2>箱源查询</h2>
+              <h5>Yard Empty Storage</h5>
+            </a>
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="service-grid">
-          <div class="service-grid-header">
-            <i class="iconfont icon-dingwei"></i>
-            <p>物流跟踪</p>
-          </div>
-          <div class="service-grid-body">
-            <ul class="service-list">
-              <li><a href="###">进口物流通关跟踪</a></li>
-              <li class="split">|</li>
-              <li><a href="###">出口物流通关跟踪</a></li>
-            </ul>
+        <div class="col-md-8">
+          <div class="news-list-tabs">
+            <div class="news-list-nav">
+              <span class="active tabs-nav__item" data-category="1">嘉港资讯</span>
+              <span class="tabs-nav__item" data-category="2">通知公告</span>
+              <span class="tabs-nav__item" data-category="3">行业资讯</span>
+            </div>
+            <div class="news-list-content">
+              <ul class="news-list" id="news-tabs-content-area"></ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
-<div class="section section-news">
+<!-- <div class="section section-news pt76 pb76">
   <div class="container">
     <div class="section-header mb32">
-      <h2 class="section-title text-center">新闻中心</h2>
+      <h2 class="section-title text-center">嘉港新闻</h2>
       <p class="section-title-sub text-center">NEWS</p>
     </div>
     <div class="row">
-      <div class="col-md-6">1</div>
-      <div class="col-md-6">2</div>
+      <div class="col-md-4 mb16">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="iconfont icon-sound-fill"></i> 通知公告</h3>
+          </div>
+          <div class="panel-body news-grid">
+            <ul class="news-list" id="news-2">
+              <li class="row" style="text-align: center">
+                <span>加载中...</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb16">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="iconfont icon-bank-fill"></i> 嘉港资讯</h3>
+          </div>
+          <div class="panel-body news-grid">
+            <ul class="news-list" id="news-1">
+              <li class="row" style="text-align: center">
+                <span>加载中...</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb16">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="iconfont icon-read-fill"></i> 行业资讯</h3>
+          </div>
+          <div class="panel-body news-grid">
+            <ul class="news-list" id="news-3">
+              <li class="row" style="text-align: center">
+                <span>加载中...</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<script type="text/template" id="news-list--tpl">
+{_.each(data, function(item){}
+<li class="row">
+  <a href="detail.html?id={{item.id}}" class="col-lg-9" title="{{item.title}}">{{item.title}}</a>
+  <span class="col-lg-3 time">{{item.createDate?moment(item.createDate).format('YYYY-MM-DD'):'-'}}</span>
+</li>
+{})}
+</script>
+

@@ -1,0 +1,31 @@
+@import './var.scss';
+@import './reset.scss';
+@import './base.scss';
+@import './layout.scss';
+@import './iconfont.scss';
+
+.detail-body {
+  padding-top: 48px;
+  .detail-title {
+    font-size: 25px;
+    text-align: center;
+  }
+  .detail-extra {
+    text-align: center;
+    margin: 8px 0 24px;
+    span {
+      display: inline-block;
+      margin:0 8px;
+      color: #999;
+    }
+  }
+  .detial-footer {
+    padding: 24px 0;
+    span, a {
+      height: 25px;
+    }
+    .shareCount {
+      width: 42px;
+    }
+  }
+}

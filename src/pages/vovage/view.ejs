@@ -1,0 +1,137 @@
+<div class="page-body services-body">
+  <div class="container">
+    <div class="card mb24">
+      <div class="card-header">
+        <div class="card-header-wrapper clearfix">
+          <div class="pull-left card-header-title card-header-title-vovage"><i class="iconfont mr0 icon-filesearch"></i> 船期查询</div>
+        </div>
+      </div>
+      <div class="card-body pb24">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="port">港口</label>
+              <select name="" id="port" class="form-control init-selectpicker">
+                <option value="">全部</option>
+                <option value="CNNGB">宁波港</option>
+                <option value="CNZPU" selected>乍浦港</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="code">码头</label>
+              <select name="" id="code" class="form-control init-selectpicker">
+                <option value="">全部</option>
+                <option value="B2SCT">北二司</option>
+                <option value="BLCT">NBCT</option>
+                <option value="BLCT2">北二集司</option>
+                <option value="BLCT3">港吉码头</option>
+                <option value="BLCTYD">远东码头</option>
+                <option value="BLCTZS">大榭招商</option>
+                <option value="BLCTMS">梅山码头</option>
+                <option value="YZCT">甬舟码头</option>
+                <option value="ZIT">乍浦码头</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="vesselEname">英文船名</label>
+              <input type="text" class="form-control" id="vesselEname" placeholder="请输入">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="vesselCname">中文船名</label>
+              <input type="text" class="form-control" id="vesselCname" placeholder="请输入">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="voyageIn">进口航次</label>
+              <input type="text" class="form-control" id="voyageIn" placeholder="请输入">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="voyageOut">出口航次</label>
+              <input type="text" class="form-control" id="voyageOut" placeholder="请输入">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button class="btn btn-primary pull-left" id="search-btn" data-loading-text="查询中..."><!-- <i class="iconfont icon-search mr0"></i> --> 查询</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body pt24 pb24">
+        <div id="result">
+          <table id="result-table" lay-filter="result-table"></table>
+          <div class="paging clearfix" id="paging"></div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/html" id="branch-temp">
+<div class="branch-item">
+  <h2 class="branch-title">基本信息</h2>
+  <div class="row">
+    <div class="col-md-4"><span>港口:</span>{{data[0].arrivalPort}}</div>
+    <div class="col-md-4"><span>码头:</span>{{data[0].workTerminal}}</div>
+    <div class="col-md-4"><span>英文船名:</span>{{data[0].vesselEname}}</div>
+    <div class="col-md-4"><span>中文船名:</span>{{data[0].vesselCname}}</div>
+    <div class="col-md-4"><span>进口航次:</span>{{data[0].voyageIn}}</div>
+    <div class="col-md-4"><span>出口航次:</span>{{data[0].voyageOut}}</div>
+    <div class="col-md-4"><span>进出口:</span>{{data[0].tradeFlag}}</div>
+    <div class="col-md-4"><span>预计抵港时间:</span>{{data[0].dependPlanTime}}</div>
+    <div class="col-md-4"><span>实际抵港时间:</span>{{data[0].dependActualTime}}</div>
+    <div class="col-md-4"><span>UN代码:</span>{{data[0].vesselUncode}}</div>
+    <div class="col-md-4"><span>预计离港时间:</span>{{data[0].leavePlanTime}}</div>
+    <div class="col-md-4"><span>实际离港时间:</span>{{data[0].leaveActualTime}}</div>
+  </div>
+</div>
+<div class="divider divider-horizontal"></div>
+<div class="branch-item">
+  <h2 class="branch-title">内支线靠港1</h2>
+  <div class="row">
+    <div class="col-md-4"><span>卸港1:</span>{{data[0].nzxDischargePort1}}</div>
+    <div class="col-md-4"><span>装港1:</span>{{data[0].nzxLoadPort1}}</div>
+    <div class="col-md-4"><span>预计抵港时间:</span>{{data.length > 1 ? data[1].dependPlanTime : '-'}}</div>
+    <div class="col-md-4"><span>实际抵港时间:</span>{{data.length > 1 ? data[1].dependActualTime : '-'}}</div>
+    <div class="col-md-4"><span>预计离港时间:</span>{{data.length > 1 ? data[1].leavePlanTime : '-'}}</div>
+    <div class="col-md-4"><span>实际离港时间:</span>{{data.length > 1 ? data[1].leaveActualTime : '-'}}</div>
+  </div>
+</div>
+<div class="divider divider-horizontal"></div>
+<div class="branch-item">
+  <h2 class="branch-title">内支线靠港2</h2>
+  <div class="row">
+    <div class="col-md-4"><span>卸港2:</span>{{data[0].nzxDischargePort2}}</div>
+    <div class="col-md-4"><span>装港2:</span>{{data[0].nzxLoadPort2}}</div>
+    <div class="col-md-4"><span>预计抵港时间:</span>{{data.length > 2 ? data[2].dependPlanTime : '-'}}</div>
+    <div class="col-md-4"><span>实际抵港时间:</span>{{data.length > 2 ? data[2].dependActualTime : '-'}}</div>
+    <div class="col-md-4"><span>预计离港时间:</span>{{data.length > 2 ? data[2].leavePlanTime : '-'}}</div>
+    <div class="col-md-4"><span>实际离港时间:</span>{{data.length > 2 ? data[2].leaveActualTime : '-'}}</div>
+  </div>
+</div>
+<div class="divider divider-horizontal"></div>
+<div class="branch-item">
+  <h2 class="branch-title">内支线靠港3</h2>
+  <div class="row">
+    <div class="col-md-4"><span>卸港3:</span>{{data[0].nzxDischargePort3}}</div>
+    <div class="col-md-4"><span>装港3:</span>{{data[0].nzxLoadPort3}}</div>
+    <div class="col-md-4"><span>预计抵港时间:</span>{{data.length > 3 ? data[3].dependPlanTime : '-'}}</div>
+    <div class="col-md-4"><span>实际抵港时间:</span>{{data.length > 3 ? data[3].dependActualTime : '-'}}</div>
+    <div class="col-md-4"><span>预计离港时间:</span>{{data.length > 3 ? data[3].leavePlanTime : '-'}}</div>
+    <div class="col-md-4"><span>实际离港时间:</span>{{data.length > 3 ? data[3].leaveActualTime : '-'}}</div>
+  </div>
+</div>
+</script>
+
+
